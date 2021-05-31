@@ -10,10 +10,10 @@ import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 250,
+    maxWidth: 280,
   },
   media: {
-    height: 100,
+    height: 80,
   },
 });
 
@@ -23,27 +23,35 @@ export function PlansCard(props) {
   return (
     <>
       <Card className={classes.root}>
-        <CardActionArea>
+        <CardActionArea style={{padding: "15px"}}>
           <CardMedia
             className={classes.media}
             image={'/' + props.image}
+            width= "50px"
+            height= "100px"
             title="Contemplative Reptile"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography gutterBottom variant="h6" component="h6" color="primary">
+              $ {props.dolar},{props.cents}
+            </Typography>
+            <Typography gutterBottom variant="h6" component="h6">
+              {props.speedtitle}
+            </Typography>
+            <Typography gutterBottom variant="h6" component="h6">
               {props.title}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              ✔ {props.highligth1}
+              ✔ {props.highlight1}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              ✔ {props.highligth2}
+              ✔ {props.highlight2}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              ✔ {props.highligth3}
+              ✔ {props.highlight3}
             </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              ✔ {props.highligth4}
+              ✔ {props.highlight4}
             </Typography>
           </CardContent>
         </CardActionArea>

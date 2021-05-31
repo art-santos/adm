@@ -4,17 +4,13 @@ import dbConnect from '../../../utils/dbConnect';
 dbConnect();
 
 export default async (req, res) => {
-  const {
-    query: { id },
-    method,
-  } = req;
+  const { method } = req;
+
 
   switch (method) {
     case 'GET':
       try {
-        const note = await Cardscontainers.find({
-          provider: 'att',
-        });
+        const note = await Cardscontainers.find();
 
         if (!note) {
           return res.status(400).json({ success: false });

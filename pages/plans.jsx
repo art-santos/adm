@@ -7,6 +7,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import ContentCards from '../components/Content/ContentCards';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -19,13 +20,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
 export default function Pages() {
+  const [providers, setProviders] = useState([])
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
-  const [open, setOpen] = React.useState(false);
+  const [provider, setProvider] = useState('');
+  const [open, setOpen] = useState(false);
 
   const handleChange = (event) => {
-    setAge(event.target.value);
+    event.preventDefault();
+    setProvider(event.target.value);
   };
 
   const handleClose = () => {
@@ -35,6 +39,18 @@ export default function Pages() {
   const handleOpen = () => {
     setOpen(true);
   };
+
+  
+useEffect(async () => {
+  const result = await axios("https://cors-anywhere.herokuapp.com/https://admin.cleverping.com/api/providers/", {
+    headers: {                  
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Headers": "Authorization", 
+      "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE" ,
+      "Content-Type": "application/json;charset=UTF-8"                   
+  }})
+  setProviders(result.data.data)
+}, [])
 
   return (
     <>
@@ -52,16 +68,18 @@ export default function Pages() {
             open={open}
             onClose={handleClose}
             onOpen={handleOpen}
-            value={age}
-            onChange={handleChange}
+            value={provider}
+            onChange={(e) => {setProvider(e.target.value); console.log(e.target.value)}}
           >
-            <MenuItem value={10}>ATT</MenuItem>
-            <MenuItem value={20}>FRONTIER</MenuItem>
-            <MenuItem value={30}>CENTURYLINK</MenuItem>
+            {providers.map(item => {
+              return (
+                <MenuItem onClick={(e) => {console.log(e.target.value)}}value={`${item.provider}`}>{item.provider}</MenuItem>
+              )
+            })}
           </Select>
         </FormControl>
       </Container>
-      <ContentCards />
+      <ContentCards provider={provider}/>
     </>
   );
 }

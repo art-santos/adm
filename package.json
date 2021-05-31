@@ -2,10 +2,11 @@
   "name": "next-boilerplate",
   "version": "1.0.0",
   "author": {
-    "name": "Fábrica de Código",
-    "email": "contato@fabricadecodigo.com",
-    "url": "https://www.fabricadecodigo.com"
+    "name": "Elevenrush",
+    "email": "arthur.carvalho@elevenrush.com",
+    "url": "https://www.elevenrush.com"
   },
+  "proxy": "http://localhost:3000",
   "license": "MIT",
   "private": true,
   "scripts": {
