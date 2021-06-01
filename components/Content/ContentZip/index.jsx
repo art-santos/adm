@@ -1,34 +1,33 @@
 import React, { useState, useEffect } from "react";
 import Container from "./styles";
-import PlansCard from "../../Cards/PlansCard/index";
+import RelevanceCard from "../../Cards/RelevanceCard/index";
 import BlueSpinner from "../../Loading/blueSpinner";
 import axios from "axios";
 
-export default function Content(provider) {
+export default function ContentRelevance(provider) {
   const [plans, setPlans] = useState([])
   
   useEffect(async () => {
-   const result = await axios(`https://cors-anywhere.herokuapp.com/https://admin.cleverping.com/api/plans/`, {
+   const result = await axios(`https://cors-anywhere.herokuapp.com/https://admin.cleverping.com/api/providers/`, {
     headers: {                  
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Headers": "Authorization", 
       "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE" ,
       "Content-Type": "application/json;charset=UTF-8"                   
   }})
-   setPlans(result.data.items)
-   
+   setPlans(result.data.data)
   }, [])
 
-  const filteredPlans = plans.filter(item => {
-   return (item.provider == provider.provider)
- })
+  
 
   return (
     <>
         <Container>
-          {filteredPlans.map((item, i) => {
+          {plans.map((item, i) => {
             return(
-              <PlansCard image={item.image} title={item.name} speedtitle={item.speedtitle} dolar={item.price} cents={item.dolar} highlight1={item.desc1} highlight2={item.desc2} highlight3={item.desc3} highlight4={item.desc4}/>
+              <>
+              <RelevanceCard image={item.image} title={item.provider}/>
+              </>
             )
           })}  
         </Container>

@@ -17,13 +17,16 @@ const useStyles = makeStyles({
   },
 });
 
-export function PlansCard(props) {
+export function ProvidersCard(props) {
   const classes = useStyles();
 
   return (
     <>
       <Card className={classes.root}>
         <CardActionArea style={{padding: "15px"}}>
+        <Typography gutterBottom variant="h6" component="h6" alignSelf="center" direction="column" alignItems="center" justify="center" style={{textTransform: "uppercase", textAlign: "center", fontWeight:"700", height:"50px"}}>
+              {props.title}
+            </Typography>
           <CardMedia
             className={classes.media}
             image={'/' + props.image}
@@ -32,31 +35,14 @@ export function PlansCard(props) {
             title={props.title}
           />
           <CardContent>
-            <Typography gutterBottom variant="h6" component="h6" color="primary">
-              $ {props.dolar},{props.cents}
+            <Typography gutterBottom variant="h6" component="h6" style={{ textAlign: "center", fontWeight:"700"}}>
+              {props.phone}
             </Typography>
-            <Typography gutterBottom variant="h6" component="h6">
-              {props.speedtitle}
-            </Typography>
-            <Typography gutterBottom variant="h6" component="h6">
-              {props.title}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              ✔ {props.highlight1}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              ✔ {props.highlight2}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              ✔ {props.highlight3}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              ✔ {props.highlight4}
-            </Typography>
+            
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
+          <Button size="large" color="primary" >
             Edit
           </Button>
           <Button size="small" color="secondary">
@@ -68,4 +54,4 @@ export function PlansCard(props) {
   );
 }
 
-export default PlansCard;
+export default ProvidersCard;

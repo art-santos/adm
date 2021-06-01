@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ContentHeader from '../components/Content/ContentHeader/index';
 import { Container, Title, Buttons } from '../styles/MainHeader/styles';
 import { makeStyles } from '@material-ui/core/styles';
@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import getMonth from '../components/Functions/Date/getMonth';
 import getYear from '../components/Functions/Date/getYear';
+import ContentDashboard from '../components/Content/ContentDashboard'
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -22,21 +23,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Pages() {
   const classes = useStyles();
-  const [age, setAge] = React.useState('');
-  const [open, setOpen] = React.useState(false);
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
+useEffect(() => {
+  function trimDate(date){
+    console.log(date.substring(11))
+  }
+  trimDate("00:00:00 AM 01/01/2021")
+  
+}, [])
   return (
     <>
       <Container>
@@ -72,6 +65,7 @@ export default function Pages() {
           </FormControl>
         </Buttons>
       </Container>
+      <ContentDashboard />
     </>
   );
 }

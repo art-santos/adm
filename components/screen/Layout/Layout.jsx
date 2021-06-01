@@ -24,7 +24,7 @@ import MapIcon from '@material-ui/icons/Map';
 import LanguageIcon from '@material-ui/icons/Language';
 import HeadsetMicIcon from '@material-ui/icons/HeadsetMic';
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Logo from '../../Images/Logo';
 import Link from 'next/link';
 
@@ -120,6 +120,55 @@ export default function LayoutComponent({ children }) {
     setAnchorEl(null);
   };
 
+  useEffect(() => {
+    if(window.location.pathname == "/"){
+    setPage('HOME');
+      setColor({
+      color1: '#fd9168',
+      color2: '#396ab3',
+      color3: '#396ab3',
+      color4: '#396ab3',
+      color5: '#396ab3',
+    });
+    }if(window.location.pathname == "/plans/"){
+      setPage('PLANS');
+      setColor({
+        color1: '#396ab3',
+        color2: '#fd9168',
+        color3: '#396ab3',
+        color4: '#396ab3',
+        color5: '#396ab3',
+      });
+      }if(window.location.pathname == "/zips/"){
+        setPage('ZIPS');
+        setColor({
+          color1: '#396ab3',
+          color2: '#396ab3',
+          color3: '#396ab3',
+          color4: '#fd9168',
+          color5: '#396ab3',
+        });
+        }if(window.location.pathname == "/relevance/"){
+          setPage('RELEVANCE');
+          setColor({
+            color1: '#396ab3',
+            color2: '#396ab3',
+            color3: '#396ab3',
+            color4: '#396ab3',
+            color5: '#fd9168',
+          });
+          }if(window.location.pathname == "/providers/"){
+            setPage('PROVIDERS');
+            setColor({
+              color1: '#396ab3',
+              color2: '#396ab3',
+              color3: '#fd9168',
+              color4: '#396ab3',
+              color5: '#396ab3',
+            });
+            }
+
+  })
   function handlePlans() {
     setPage('PLANS');
     setColor({

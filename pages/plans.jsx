@@ -24,13 +24,8 @@ const useStyles = makeStyles((theme) => ({
 export default function Pages() {
   const [providers, setProviders] = useState([])
   const classes = useStyles();
-  const [provider, setProvider] = useState('');
+  const [provider, setProvider] = useState('att');
   const [open, setOpen] = useState(false);
-
-  const handleChange = (event) => {
-    event.preventDefault();
-    setProvider(event.target.value);
-  };
 
   const handleClose = () => {
     setOpen(false);
