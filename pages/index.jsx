@@ -24,11 +24,8 @@ const useStyles = makeStyles((theme) => ({
 export default function Pages() {
   const classes = useStyles();
 useEffect(() => {
-  function trimDate(date){
-    console.log(date.substring(11))
-  }
-  trimDate("00:00:00 AM 01/01/2021")
   
+
 }, [])
   return (
     <>
