@@ -17,7 +17,7 @@ export default function BlueSpinner() {
   return (
     <>
       <div className={classes.root}>
-        <CircularProgress style={{ margin: 'auto' }} color="primary" />
+        <CircularProgress style={{ margin: 'auto', color: "rgb(72, 168, 245)" }}/>
       </div>
     </>
   );

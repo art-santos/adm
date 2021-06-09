@@ -37,7 +37,7 @@ export default function Pages() {
 
   
 useEffect(async () => {
-  const result = await axios("https://cors-anywhere.herokuapp.com/https://admin.cleverping.com/api/providers/", {
+  const result = await axios("/api/providers/", {
     headers: {                  
       "Access-Control-Allow-Origin": "*",
       "Access-Control-Allow-Headers": "Authorization", 

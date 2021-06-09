@@ -8,12 +8,12 @@ export default function ContentRelevance(provider) {
   const [plans, setPlans] = useState([])
   
   useEffect(async () => {
-   const result = await axios(`https://cors-anywhere.herokuapp.com/https://admin.cleverping.com/api/providers/`, {
+   const result = await axios(`/api/providers/`, {
     headers: {                  
       "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "Authorization", 
-      "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE" ,
-      "Content-Type": "application/json;charset=UTF-8"                   
+      "Access-Control-Allow-Headers": "*", 
+      "Access-Control-Allow-Methods": "*" ,
+      "Content-Type": "*"                   
   }})
    setPlans(result.data.data)
   }, [])

@@ -8,15 +8,14 @@ export default function Content(provider) {
   const [plans, setPlans] = useState([])
   
   useEffect(async () => {
-   const result = await axios(`https://cors-anywhere.herokuapp.com/https://admin.cleverping.com/api/plans/`, {
+   const result = await axios(`/api/plans/`, {
     headers: {                  
       "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "Authorization", 
-      "Access-Control-Allow-Methods": "GET, POST, OPTIONS, PUT, PATCH, DELETE" ,
-      "Content-Type": "application/json;charset=UTF-8"                   
+      "Access-Control-Allow-Headers": "*", 
+      "Access-Control-Allow-Methods": "*" ,
+      "Content-Type": "*"                   
   }})
    setPlans(result.data.items)
-   
   }, [])
 
   const filteredPlans = plans.filter(item => {

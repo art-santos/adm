@@ -5,13 +5,21 @@ export const Container = styled.div`
   grid-template-columns: 1fr 1fr;
 `;
 
-export const Title = styled.div``;
+export const Title = styled.div`
+
+`;
 
 export const Buttons = styled.div`
   margin: auto;
 `;
 
 export const innerContent = styled.div`
-  border: 1px solid black;
+`;
+
+export const Cards = styled.div`
+width: 90%;
+display: flex;
+justify-content: space-around;
+color: #fff;
 `;
 export default Container;

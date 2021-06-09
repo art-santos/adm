@@ -27,6 +27,8 @@ import clsx from 'clsx';
 import { useState, useEffect } from 'react';
 import Logo from '../../Images/Logo';
 import Link from 'next/link';
+import Router from 'next/router'
+
 
 const drawerWidth = 260;
 
@@ -118,9 +120,11 @@ export default function LayoutComponent({ children }) {
 
   const handleClose = () => {
     setAnchorEl(null);
+    localStorage.removeItem('token');
+    Router.reload();
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     if(window.location.pathname == "/"){
     setPage('HOME');
       setColor({
@@ -129,7 +133,7 @@ export default function LayoutComponent({ children }) {
       color3: '#396ab3',
       color4: '#396ab3',
       color5: '#396ab3',
-    });
+    }, []);
     }if(window.location.pathname == "/plans/"){
       setPage('PLANS');
       setColor({
@@ -138,7 +142,7 @@ export default function LayoutComponent({ children }) {
         color3: '#396ab3',
         color4: '#396ab3',
         color5: '#396ab3',
-      });
+      }, []);
       }if(window.location.pathname == "/zips/"){
         setPage('ZIPS');
         setColor({
@@ -147,7 +151,7 @@ export default function LayoutComponent({ children }) {
           color3: '#396ab3',
           color4: '#fd9168',
           color5: '#396ab3',
-        });
+        }, []);
         }if(window.location.pathname == "/relevance/"){
           setPage('RELEVANCE');
           setColor({
@@ -156,7 +160,7 @@ export default function LayoutComponent({ children }) {
             color3: '#396ab3',
             color4: '#396ab3',
             color5: '#fd9168',
-          });
+          }, []);
           }if(window.location.pathname == "/providers/"){
             setPage('PROVIDERS');
             setColor({
@@ -165,10 +169,11 @@ export default function LayoutComponent({ children }) {
               color3: '#fd9168',
               color4: '#396ab3',
               color5: '#396ab3',
-            });
+            }, []);
             }
 
-  })
+  })*/
+  
   function handlePlans() {
     setPage('PLANS');
     setColor({
@@ -325,14 +330,14 @@ export default function LayoutComponent({ children }) {
               <ListItemText primary={'PROVIDERS'} />
             </ListItem>
           </Link>
-          <Link href="zips">
-            <ListItem button key={'ZIPS'} value={'ZIPS'} onClick={handleZips}>
-              <ListItemIcon>
-                <MapIcon style={{ color: color.color4 }} />
-              </ListItemIcon>
-              <ListItemText primary={'ZIPS'} />
-            </ListItem>
-          </Link>
+            {/* {<Link href="zips">
+              <ListItem button key={'ZIPS'} value={'ZIPS'} onClick={handleZips}>
+                <ListItemIcon>
+                  <MapIcon style={{ color: color.color4 }} />
+                </ListItemIcon>
+                <ListItemText primary={'ZIPS'} />
+              </ListItem>
+            </Link>} */}
           <Link href="relevance">
             <ListItem
               button

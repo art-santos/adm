@@ -12,6 +12,9 @@ export const Chart = styled.div`
   width: 90%;
   margin-top: 50px;
 `
+export const Charts = styled.div`
+  width: 100%;
+`
 
 export const Title = styled.div`
   padding: 15px;
