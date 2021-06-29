@@ -6,10 +6,10 @@ dbConnect();
 export default async (req, res) => {
     const { method } = req;
 
-    switch (method) { 
+    switch (method) {  
         case 'GET':
             try {
-                const cards = await Providers.find();
+                const cards = await Providers.find().sort({"relevance": 1});
                 res.status(200).json({ success: true, data: cards})
             } catch (error) {
                 res.status(400).json({ success: false });
@@ -17,7 +17,7 @@ export default async (req, res) => {
             break;
         case 'POST':
             try {
-                const note = await Cards.create(req.body);
+                const note = await Providers.create(req.body);
 
                 res.status(201).json({ success: true, data: note })
             } catch (error) {

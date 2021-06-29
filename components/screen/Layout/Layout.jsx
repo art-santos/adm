@@ -4,7 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -20,7 +19,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { createStyles, Theme, useTheme } from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
-import MapIcon from '@material-ui/icons/Map';
+import LabelIcon from '@material-ui/icons/Label';
 import LanguageIcon from '@material-ui/icons/Language';
 import HeadsetMicIcon from '@material-ui/icons/HeadsetMic';
 import clsx from 'clsx';
@@ -102,10 +101,11 @@ export default function LayoutComponent({ children }) {
     color1: '#fd9168',
     color2: '#396ab3',
     color3: '#396ab3',
-    color4: '#396ab3',
+    color4: '#396ab3', 
     color5: '#396ab3',
   });
-  const [page, setPage] = useState('HOME');
+
+  const [page, setPage] = useState("HOME");
   const [auth, setAuth] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
@@ -124,17 +124,19 @@ export default function LayoutComponent({ children }) {
     Router.reload();
   };
 
-  /*useEffect(() => {
-    if(window.location.pathname == "/"){
-    setPage('HOME');
+
+  useEffect(async () => {
+    if(window.location.pathname == '/'){
+      setPage('HOME');
       setColor({
-      color1: '#fd9168',
-      color2: '#396ab3',
-      color3: '#396ab3',
-      color4: '#396ab3',
-      color5: '#396ab3',
-    }, []);
-    }if(window.location.pathname == "/plans/"){
+        color1: '#fd9168',
+        color2: '#396ab3',
+        color3: '#396ab3',
+        color4: '#396ab3',
+        color5: '#396ab3',
+      });
+    } 
+    if(window.location.pathname == '/plans/'){
       setPage('PLANS');
       setColor({
         color1: '#396ab3',
@@ -142,37 +144,51 @@ export default function LayoutComponent({ children }) {
         color3: '#396ab3',
         color4: '#396ab3',
         color5: '#396ab3',
-      }, []);
-      }if(window.location.pathname == "/zips/"){
-        setPage('ZIPS');
-        setColor({
-          color1: '#396ab3',
-          color2: '#396ab3',
-          color3: '#396ab3',
-          color4: '#fd9168',
-          color5: '#396ab3',
-        }, []);
-        }if(window.location.pathname == "/relevance/"){
-          setPage('RELEVANCE');
-          setColor({
-            color1: '#396ab3',
-            color2: '#396ab3',
-            color3: '#396ab3',
-            color4: '#396ab3',
-            color5: '#fd9168',
-          }, []);
-          }if(window.location.pathname == "/providers/"){
-            setPage('PROVIDERS');
-            setColor({
-              color1: '#396ab3',
-              color2: '#396ab3',
-              color3: '#fd9168',
-              color4: '#396ab3',
-              color5: '#396ab3',
-            }, []);
-            }
+      });
+    } 
+    if(window.location.pathname == '/providers/'){
+      setPage('PROVIDERS');
+      setColor({
+        color1: '#396ab3',
+        color2: '#396ab3',
+        color3: '#fd9168',
+        color4: '#396ab3',
+        color5: '#396ab3',
+      });
+    } 
+    if(window.location.pathname == '/relevance/'){
+      setPage('RELEVANCE');
+      setColor({
+        color1: '#396ab3',
+        color2: '#396ab3',
+        color3: '#396ab3',
+        color4: '#fd9168',
+        color5: '#396ab3',
+      });
+    } 
+    if(window.location.pathname == 'tags/?id=60cf9a535d12990254bff6ab'){
+      setPage('TAGS');
+      setColor({
+        color1: '#396ab3',
+        color2: '#396ab3',
+        color3: '#396ab3',
+        color4: '#396ab3',
+        color5: '#fd9168',
+      });
+    }
 
-  })*/
+  }, [])
+
+  function handleHome() {
+    setPage('HOME');
+    setColor({
+      color1: '#fd9168',
+      color2: '#396ab3',
+      color3: '#396ab3',
+      color4: '#396ab3',
+      color5: '#396ab3',
+    });
+  }
   
   function handlePlans() {
     setPage('PLANS');
@@ -194,8 +210,10 @@ export default function LayoutComponent({ children }) {
       color5: '#396ab3',
     });
   }
-  function handleZips() {
-    setPage('ZIPS');
+  
+  
+  function handleRelevance() {
+    setPage('RELEVANCE');
     setColor({
       color1: '#396ab3',
       color2: '#396ab3',
@@ -204,18 +222,8 @@ export default function LayoutComponent({ children }) {
       color5: '#396ab3',
     });
   }
-  function handleHome() {
-    setPage('HOME');
-    setColor({
-      color1: '#fd9168',
-      color2: '#396ab3',
-      color3: '#396ab3',
-      color4: '#396ab3',
-      color5: '#396ab3',
-    });
-  }
-  function handleRelevance() {
-    setPage('RELEVANCE');
+  function handleZips() {
+    setPage('TAGS');
     setColor({
       color1: '#396ab3',
       color2: '#396ab3',
@@ -320,8 +328,8 @@ export default function LayoutComponent({ children }) {
           <Link href="providers">
             <ListItem
               button
-              key={'PROVIDERS'}
-              value={'PROVIDERS'}
+              key={'PLANS'}
+              value={'PLANS'}
               onClick={handleProviders}
             >
               <ListItemIcon>
@@ -330,14 +338,6 @@ export default function LayoutComponent({ children }) {
               <ListItemText primary={'PROVIDERS'} />
             </ListItem>
           </Link>
-            {/* {<Link href="zips">
-              <ListItem button key={'ZIPS'} value={'ZIPS'} onClick={handleZips}>
-                <ListItemIcon>
-                  <MapIcon style={{ color: color.color4 }} />
-                </ListItemIcon>
-                <ListItemText primary={'ZIPS'} />
-              </ListItem>
-            </Link>} */}
           <Link href="relevance">
             <ListItem
               button
@@ -346,10 +346,18 @@ export default function LayoutComponent({ children }) {
               onClick={handleRelevance}
             >
               <ListItemIcon>
-                <SwapVertIcon style={{ color: color.color5 }} />
+                <SwapVertIcon style={{ color: color.color4 }} />
               </ListItemIcon>
               <ListItemText primary={'RELEVANCE'} />
             </ListItem>
+          </Link>
+          <Link href="tags/?id=60cf9a535d12990254bff6ab">
+              <ListItem button key={'TAGS'} value={'TAGS'} onClick={handleZips}>
+                <ListItemIcon>
+                  <LabelIcon style={{ color: color.color5 }} />
+                </ListItemIcon>
+                <ListItemText primary={'TAGS'} />
+              </ListItem>
           </Link>
         </List>
         <Divider />

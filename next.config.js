@@ -13,3 +13,5 @@ module.exports = {
   },
   exportTrailingSlash: true,
 };
+
+{image:"https://www.cleverping.com/_next/image?url=%2Fwomanstanding.svg&w=3840&q=75"}

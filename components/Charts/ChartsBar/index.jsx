@@ -18,7 +18,6 @@ import axios from 'axios'
 export function ChartsBar (props) {
   const fetcher = (...args) => fetch(...args).then(res => res.json())
   const { data, error } = useSWR(`/api/zips/days/${props.date}/`, fetcher, { revalidateOnMount:true })
-  console.log(props.date)
   if(error)return <div>Error...</div>;
   if(!data) return <div><BlueSpinner /></div>
 

@@ -1,21 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Container from "./styles";
 import ProvidersCard from "../../Cards/ProvidersCard/index";
-import BlueSpinner from "../../Loading/blueSpinner";
+import AddProviderContext from '../../../Context/AddProviderContext';
 import axios from "axios";
 
-export default function ContentProviders(provider) {
+export default function ContentProviders({data}) {
   const [plans, setPlans] = useState([])
-  
-  useEffect(async () => {
-   const result = await axios(`/api/providers/`, {
-    headers: {                  
-      "Access-Control-Allow-Origin": "*",
-      "Access-Control-Allow-Headers": "*", 
-      "Access-Control-Allow-Methods": "*" ,
-      "Content-Type": "*"                   
-  }})
-   setPlans(result.data.data)
+  const {setRelevance, relevance} = useContext(AddProviderContext)
+
+  useEffect(() => {
+   setPlans(data)
+   setRelevance((data).length+1)
   }, [])
 
   
@@ -25,7 +20,7 @@ export default function ContentProviders(provider) {
         <Container>
           {plans.map((item, i) => {
             return(
-              <ProvidersCard image={item.image} title={item.provider} phone={item.phone} dolar={item.price} cents={item.dolar} highlight1={item.desc1} highlight2={item.desc2} highlight3={item.desc3} highlight4={item.desc4}/>
+              <ProvidersCard id={item._id} image={item.image} title={item.provider} phone={item.phone} telephone={item.tel}/>
             )
           })}  
         </Container>

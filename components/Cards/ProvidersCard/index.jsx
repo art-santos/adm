@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -7,6 +7,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import getImage from '../../../components/Functions/getImage'
+import DeleteWarningProviders from '../../Popup/DeleteWarningProviders'
+import EditProviderContext from '../../../Context/EditProviderContext'
+import PopupEditProviders from '../../Popup/PopupEditProviders'
 
 const useStyles = makeStyles({
   root: {
@@ -19,39 +23,64 @@ const useStyles = makeStyles({
 
 export function ProvidersCard(props) {
   const classes = useStyles();
+  console.log(props)
+
+  const [showDelete, setShowDelete] = useState(false)
+  const [open, setOpen] = useState(false)
+  const id = props.id;
+  const title = props.title;
+  const phone = props.phone;
+  const telephone = props.telephone;
+  const trimImage = getImage(props.image)
+
+
+    function handleOpen() {
+      setOpen(true);
+    }
+    async function handleDelete(e){
+      // const res = await axios.delete(`/api/providers/${props.id}`)
+      // res.status
+      // window.location.reload()
+      setShowDelete(true)
+    }
 
   return (
     <>
       <Card className={classes.root}>
         <CardActionArea style={{padding: "15px"}}>
         <Typography gutterBottom variant="h6" component="h6" alignSelf="center" direction="column" alignItems="center" justify="center" style={{textTransform: "uppercase", textAlign: "center", fontWeight:"700", height:"50px"}}>
-              {props.title}
+              {title}
             </Typography>
           <CardMedia
             className={classes.media}
-            image={'/' + props.image}
+            image={trimImage}
             width= "50px"
             height= "100px"
-            title={props.title}
+            title={title}
           />
           <CardContent>
             <Typography gutterBottom variant="h6" component="h6" style={{ textAlign: "center", fontWeight:"700"}}>
-              {props.phone}
+              {phone}
             </Typography>
             
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="large" color="primary" >
+          <Button onClick={handleOpen} size="large" color="primary" >
             Edit
           </Button>
-          <Button size="small" color="secondary">
+          <Button onClick={handleDelete} size="small" color="secondary">
             Delete
           </Button>
         </CardActions>
       </Card>
+      <EditProviderContext.Provider value={{trimImage, showDelete, setShowDelete,id, open, setOpen, title, phone, telephone}}>
+      <DeleteWarningProviders />
+      <PopupEditProviders />
+      </EditProviderContext.Provider>
     </>
   );
 }
 
 export default ProvidersCard;
+ 

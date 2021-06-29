@@ -5,7 +5,7 @@ import { useDrag } from 'react-dnd'
  * Your Component
  */
 export function DragAndDropCard({ isDragging, text }) {
-  return(<></>)
+  return(<>dwd</>)
 }
 
 export default DragAndDropCard;

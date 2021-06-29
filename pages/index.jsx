@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    minWidth: 120,
+    minWidth: 250,
   },
 }));
 
@@ -122,12 +122,12 @@ if(newLoading){
 }else{
   return(
     <>
-    <Container>
+    <Container >
         <Title>
           <ContentHeader title={'Select a Date'} />
         </Title>
         <Buttons>
-          <FormControl className={classes.formControl} >
+          <FormControl className={classes.formControl}  >
             <InputLabel htmlFor="grouped-select">Month</InputLabel>
             <Select defaultValue="" id="grouped-select" onChange={changeData}>
               <MenuItem value="01">January</MenuItem>
@@ -181,7 +181,7 @@ if(newLoading){
         loading={loading}
       />
       </Cards>
-      <ContentDashboard data={days} loading={loading} actualMonth={actualMonth} date={month}/>
+      <ContentDashboard data={days} loading={loading} actualMonth={actualMonth} date={month} />
     </>
   )
 }

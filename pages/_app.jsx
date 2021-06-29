@@ -6,7 +6,6 @@ import { DndProvider } from 'react-dnd'
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Layout from '../components/screen/Layout/Layout';
 import SignInSide from '../components/Login/index';
-
 import '@devexpress/dx-react-chart-bootstrap4/dist/dx-react-chart-bootstrap4.css';
 
 function MyApp({ Component, pageProps }) {

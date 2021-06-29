@@ -3,23 +3,23 @@ const mongoose = require('mongoose');
 const CardsSchema = new mongoose.Schema({
   zip: {
     type: Number,
-    required: true,
+    required: false,
     unique: false,
     maxlength: [5, 'Zip code cannot be more than 5 characters'],
   },
   provider: {
     type: String,
-    required: true,
+    required: false,
     unique: false,
   },
   name: {
     type: String,
-    required: true,
+    required: false,
     unique: false,
   },
   relevance: {
     type: Number,
-    required: true,
+    required: false,
     unique: false,
   },
   price: {
@@ -32,24 +32,29 @@ const CardsSchema = new mongoose.Schema({
     required: false,
     unique: false,
   },
+  speedtitle: {
+    type: String,
+    required: false,
+    unique: false,
+  },
   telephone: {
     type: String,
-    required: true,
+    required: false,
     unique: false,
   },
-  highlight1: {
+  desc1: {
     type: String,
     unique: false,
   },
-  highlight2: {
+  desc2: {
     type: String,
     unique: false,
   },
-  highlight3: {
+  desc3: {
     type: String,
     unique: false,
   },
-  highlight4: {
+  desc4: {
     type: String,
     unique: false,
   },

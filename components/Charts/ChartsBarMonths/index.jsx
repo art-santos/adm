@@ -21,7 +21,6 @@ export function ChartsBar (props) {
 
   if(error)return <div>Error...</div>;
   if(!data) return <div><BlueSpinner /></div>
-  console.log(props.date);
     const content = [
       {month: "Jan - " + data.months[0].month,  amount: data.months[0].month},
       {month: "Feb - " + data.months[1].month,  amount: data.months[1].month},

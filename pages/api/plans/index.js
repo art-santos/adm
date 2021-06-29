@@ -20,6 +20,15 @@ export default async (req, res) => {
         res.status(400).json({ success: false });
       }
       break;
+      case 'POST':
+            try {
+                const note = await Cardscontainers.create(req.body);
+
+                res.status(201).json({ success: true, data: note })
+            } catch (error) {
+                res.status(400).json({ success: false });
+            }
+            break;
     case 'PUT':
       try {
         const note = await Cardscontainers.findByIdAndUpdate(id, req.body, {

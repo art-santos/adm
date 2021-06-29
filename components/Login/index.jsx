@@ -80,8 +80,6 @@ export default function SignInSide() {
    }else{
      setError(true)
    }
-   console.log(email)
-   console.log(password)
   }
 
   return (
