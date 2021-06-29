@@ -7,6 +7,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Layout from '../components/screen/Layout/Layout';
 import SignInSide from '../components/Login/index';
 import '@devexpress/dx-react-chart-bootstrap4/dist/dx-react-chart-bootstrap4.css';
+import Cors from 'cors'
+
+// Initializing the cors middleware
+const cors = Cors({
+  methods: ['GET','PUT','POST', 'DELETE', 'HEAD'],
+})
 
 function MyApp({ Component, pageProps }) {
   const [token, setToken] = useState(false)

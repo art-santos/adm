@@ -1,14 +1,21 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ContentHeader from '../components/Content/ContentHeader/index';
 import ContentProviders from '../components/Content/ContentProviders/index';
 import { Container, Title, Buttons } from '../styles/MainHeader/styles';
 import Button from '@material-ui/core/Button';
 import PopupProviders from '../components/Popup/PopupProviders/index'
 import AddProviderContext from '../Context/AddProviderContext';
+import axios from 'axios'
 
-const Pages = ({data}) => {
+export const Pages = ({data}) => {
   const [open, setOpen] = useState(false);
   const [relevance, setRelevance] = useState();
+  //const [data, setData] = useState([])
+
+  useEffect(async () => {
+    const res = await axios('/api/providers/');
+    console.log(res.data.data);
+  }, [])
 
   function handleOpen(){
     setOpen(true)
@@ -16,7 +23,7 @@ const Pages = ({data}) => {
 
   return (
     <>
-    <AddProviderContext.Provider value={{setOpen, open, setRelevance, relevance}}>
+    <AddProviderContext.Provider value={{setOpen, open, setRelevance, relevance, data}}>
       <Container style={{width: "80%"}}>
           <Title>
               <ContentHeader title={'Providers'} />
@@ -33,11 +40,28 @@ const Pages = ({data}) => {
 };
  
 export default Pages;
-
-Pages.getInitialProps = async (ctx) => {
-      const res = await fetch("https://clever-admin.vercel.app/api/providers/")
+export async function getServerSideProps(context) {
+  const res = await fetch("http://clever-admin.vercel.app/api/providers/", {
+        mode: 'cors',
+        headers: {
+          'Access-Control-Allow-Origin':'*'
+        }})
       const json = await res.json()
+
     return {
-      data: json.data
+      props:{data: json.data}
   }
 }
+
+// Pages.getInitialProps = async (ctx) => {
+//       const res = await fetch("http://clever-admin.vercel.app/api/providers/", {
+//         mode: 'cors',
+//         headers: {
+//           'Access-Control-Allow-Origin':'*'
+//         }})
+//       const json = await res.json()
+
+//     return {
+//       data: json.data
+//   }
+// }

@@ -37,7 +37,11 @@ export function PlansAlt() {
   
   useEffect(async () => {
     const urlParams = new URLSearchParams(window.location.search)
-    const res = await axios(`/api/metatags/${urlParams.get('id')}`)
+    const res = await axios(`/api/metatags/${urlParams.get('id')}`, {
+      mode: 'cors',
+      headers: {
+        'Access-Control-Allow-Origin':'*'
+      }})
     if(urlParams.get('id')){
       setPage(urlParams.get('id'))
     }else{

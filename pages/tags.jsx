@@ -9,6 +9,7 @@ import Select from '@material-ui/core/Select';
 import ContentAlts from '../components/Content/ContentAlts';
 import EditTagContext from '../Context/EditTagContext'
 import { useRouter } from 'next/router';
+import axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -71,11 +72,34 @@ export default function Pages({data}) {
     </>
   );
 }
-
-Pages.getInitialProps = async (ctx) => {
-  const res = await fetch('https://clever-admin.vercel.app/api/metatags')
-  const json = await res.json();
-  return {
-    data:json.items, 
-  }
+export async function getServerSideProps(context) {
+  try{
+    const res = await fetch('http://clever-admin.vercel.app/api/metatags', {
+      mode: 'cors',
+      headers: {
+        'Access-Control-Allow-Origin':'*'
+      }})
+    const json = await res.json();
+    return {
+      props:{data:json.items, }
+    }
+    }catch(e){
+      console.log(e)
+    }
 }
+
+// Pages.getInitialProps = async (ctx) => {
+//     try{
+//     const res = await fetch('http://clever-admin.vercel.app/api/metatags', {
+//       mode: 'cors',
+//       headers: {
+//         'Access-Control-Allow-Origin':'*'
+//       }})
+//     const json = await res.json();
+//     return {
+//       data:json.items, 
+//     }
+//     }catch(e){
+//       console.log(e)
+//     }
+// }

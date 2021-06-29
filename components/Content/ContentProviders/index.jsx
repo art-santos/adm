@@ -2,17 +2,16 @@ import React, { useState, useEffect, useContext } from "react";
 import Container from "./styles";
 import ProvidersCard from "../../Cards/ProvidersCard/index";
 import AddProviderContext from '../../../Context/AddProviderContext';
-import axios from "axios";
 
 export default function ContentProviders({data}) {
-  const [plans, setPlans] = useState([])
-  const {setRelevance, relevance} = useContext(AddProviderContext)
 
-  useEffect(() => {
+  useEffect(async () => {
    setPlans(data)
    setRelevance((data).length+1)
   }, [])
 
+  const [plans, setPlans] = useState([])
+  const {setRelevance} = useContext(AddProviderContext)
   
 
   return (

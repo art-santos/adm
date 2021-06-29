@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Pages({data1,data2}) {
+export const Pages = ({data1,data2}) => {
   const [providers, setProviders] = useState([]);
   const [plans, setPlans] = useState([]);
   const [provider, setProvider] = useState('att');
@@ -101,15 +101,31 @@ useEffect(() => {
   );
 }
 
+export default Pages
 
-Pages.getInitialProps = async (ctx) => {
-  const res = await fetch("https://clever-admin.vercel.app/api/providers/")
-  const res1 = await fetch("https://clever-admin.vercel.app/api/plans/")
+export async function getServerSideProps(context) {
+  const res = await fetch("http://clever-admin.vercel.app/api/providers/", {
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin':'*'
+    }})
+  const res1 = await fetch("http://clever-admin.vercel.app/api/plans/", {
+    mode: 'cors',
+    headers: {
+      'Access-Control-Allow-Origin':'*'
+    }})
   const json = await res.json();
   const json1 = await res1.json();
-
   return {
-    data1: json.data,
-    data2: json1.items
+    props: {
+      data1: json.data,
+      data2: json1.items
+    }, 
   }
 }
+
+// Pages.getInitialProps = async (ctx) => {
+  
+
+//   return 
+// }

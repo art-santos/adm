@@ -23,6 +23,7 @@
     "@material-ui/icons": "^4.9.1",
     "animated-number-react": "^0.1.2",
     "axios": "^0.21.1",
+    "cors": "^2.8.5",
     "mongoose": "^5.12.12",
     "next": "10.0.3",
     "react": "17.0.1",

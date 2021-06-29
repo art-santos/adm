@@ -3,7 +3,7 @@ module.exports = {
     return [
       {
         source: '/api/:path*',
-        destination: 'https://clever-admin.vercel.app/:path*',
+        destination: 'https://admin.cleverping.com/:path*',
       },
     ]
   },
