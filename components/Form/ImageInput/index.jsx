@@ -4,9 +4,7 @@ import { Container, Images } from './styles';
 import { baseStyle, activeStyle, acceptStyle, rejectStyle} from './dropStyles'
 
 function InputImage({handleChange, image}) {
-
-    console.log(image)
-    
+   
   const {
     getRootProps,
     getInputProps,

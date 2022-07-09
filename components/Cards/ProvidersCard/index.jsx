@@ -23,13 +23,17 @@ const useStyles = makeStyles({
 
 export function ProvidersCard(props) {
   const classes = useStyles();
-  console.log(props)
 
   const [showDelete, setShowDelete] = useState(false)
   const [open, setOpen] = useState(false)
   const id = props.id;
   const title = props.title;
   const phone = props.phone;
+  const caps = props.caps;
+  const price = props.price;
+  const link = props.link;
+  const speed = props.speed;
+  const relevance = props.relevance;
   const telephone = props.telephone;
   const trimImage = getImage(props.image)
 
@@ -54,14 +58,11 @@ export function ProvidersCard(props) {
           <CardMedia
             className={classes.media}
             image={trimImage}
-            width= "50px"
+            width= "40px"
             height= "100px"
             title={title}
           />
           <CardContent>
-            <Typography gutterBottom variant="h6" component="h6" style={{ textAlign: "center", fontWeight:"700"}}>
-              {phone}
-            </Typography>
             
           </CardContent>
         </CardActionArea>
@@ -74,7 +75,7 @@ export function ProvidersCard(props) {
           </Button>
         </CardActions>
       </Card>
-      <EditProviderContext.Provider value={{trimImage, showDelete, setShowDelete,id, open, setOpen, title, phone, telephone}}>
+      <EditProviderContext.Provider value={{trimImage, showDelete, setShowDelete,id, open, setOpen, title, phone, telephone, caps, speed, link, price, relevance}}>
       <DeleteWarningProviders />
       <PopupEditProviders />
       </EditProviderContext.Provider>

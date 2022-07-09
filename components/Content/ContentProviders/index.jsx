@@ -12,14 +12,24 @@ export default function ContentProviders({data}) {
 
   const [plans, setPlans] = useState([])
   const {setRelevance} = useContext(AddProviderContext)
-  
+  console.log(data);
 
   return (
     <>
         <Container>
           {plans.map((item, i) => {
             return(
-              <ProvidersCard id={item._id} image={item.image} title={item.provider} phone={item.phone} telephone={item.tel}/>
+              <ProvidersCard
+                id={item._id}
+                image={item.image}
+                title={item.name}
+                telephone={item.tel}
+                relevance={item.relevance}
+                speed={item.speed}
+                caps={item.caps}
+                link={item.link}
+                price={item.price}
+              />
             )
           })}  
         </Container>

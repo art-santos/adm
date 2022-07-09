@@ -8,15 +8,24 @@ import sendToCloud from '../../Functions/sendToCloud'
 import AddProviderContext from '../../../Context/AddProviderContext'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios'
+import { Input } from '@material-ui/core';
+import Papa from "papaparse";
 
-export default function PopupProviders() {
+export default function PopupProviders({len}) {
   const {open, setOpen, relevance} = useContext(AddProviderContext)
   const [image, setImage] = useState("");
+  const [file, setFile] = useState(null);
   const [display, setDisplay] = useState("none")
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
   const [telephone, setTelephone] = useState("")
-  const [load, setLoad] = useState(false)
+  const [zips, setZips] = useState([])
+  const [name, setName] = useState("")
+  const [this_caps, setCaps] = useState("")
+  const [this_price, setPrice] = useState("")
+  const [this_link, setLink] = useState("")
+  const [this_speed, setSpeed] = useState("")
+  const [this_relevance, setRelevance] = useState("")
+  const [tel, setTel] = useState(telephone)
+  const [load, setLoad] = useState(false);
   
   function handleClose(){
    setOpen(false)
@@ -25,12 +34,18 @@ export default function PopupProviders() {
     setName(e)
   };
 
-  const handlePhone = (e) => {
-    const re = /^[0-9\n\-() ]+$/;
-    if (e === '' || re.test(e)) {
-      setPhone(e)
-   }
- };
+ const handleFile = async (e) => {
+  await Papa.parse(e, {
+    fastMode: false,
+    chunkSize: 10000,
+    RemoteChunkSize: 100000000,
+    header: false,
+    skipEmptyLines: true,
+    complete: function (results) {
+      setZips(results.data.join(','))
+    },
+  });
+}
 
   const handleTelephone = (e) => {
     const re = /^[0-9\b]+$/;
@@ -38,6 +53,33 @@ export default function PopupProviders() {
       setTelephone(e)
    }
   };
+
+  const handleCaps =  (e) => {
+    setCaps(e)
+  }
+
+  const handlePrice = (e) => {
+    setPrice(e)
+  }
+
+  const handleLink = (e) => {
+    setLink(e)
+  }
+
+  const handleSpeed = (e) => {
+    const re = /^[0-9\b]+$/;
+    if (e === '' || re.test(e)) {
+      setSpeed(e)
+   }
+  }
+
+  const handleRelevance = (e) => {
+    setRelevance(e)
+  }
+
+  const handleTel = (e) => {
+    setTel(e)
+  }
 
   const handleChange = async (e) => {
     setLoad(true)
@@ -47,16 +89,21 @@ export default function PopupProviders() {
     setLoad(false)
   }
 
-   const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     try{
-      await axios.post('/api/providers', 
-     {
+      await axios.post('https://backend-cp.herokuapp.com/api/create-plan', 
+    {
+      "tel": tel,
+      "name": name,
+      "image": image,
       "provider": name,
-      "relevance": relevance,
-      "tel": telephone,
-      "phone":phone,
-      "image":image,
+      "caps": this_caps,
+      "price": this_price,
+      "link": this_link,
+      "speed": this_speed,
+      "relevance": len+1,
+      "zip": zips
       })
     }catch(e){
       setFullLoad(false)
@@ -77,28 +124,15 @@ export default function PopupProviders() {
           label="Provider Name"
           variant="outlined"
           required={true}
-          fullWidth
           value={name}
           onChange={(e) => {handleName(e.target.value)}}
         />
-        <TextField
-          fullWidth
-          id="phone"
-          name="phone"
-          label="Phone 1 (833) 531-0303"
-          type="phone"
-          variant="outlined"
-          required={true}
-          style={{marginTop:"15px"}}
-          value={phone}
-          onChange={(e) => {handlePhone(e.target.value)}}
-          inputProps={{maxLength :16}}
-        />
+        
         <TextField
           fullWidth
           id="telephone"
           name="telephone"
-          label="telephone 18335310303"
+          label="telephone (18335310303)"
           type="phone"
           variant="outlined"
           required={true}
@@ -107,7 +141,63 @@ export default function PopupProviders() {
           onChange={(e) => {handleTelephone(e.target.value)}}
           inputProps={{maxLength :11}}
         />
+        <TextField
+          fullWidth
+          id="speed"
+          name="speed"
+          label="speed (1000)"
+          type="phone"
+          variant="outlined"
+          required={true}
+          style={{marginTop:"15px"}}
+          value={this_speed}
+          onChange={(e) => {handleSpeed(e.target.value)}}
+          inputProps={{maxLength :4}}
+        />
+        <TextField
+          fullWidth
+          id="caps"
+          name="caps"
+          label="caps (Unlimited)"
+          type="phone"
+          variant="outlined"
+          required={true}
+          style={{marginTop:"15px"}}
+          value={this_caps}
+          onChange={(e) => {handleCaps(e.target.value)}}
+          inputProps={{maxLength :25}}
+        />
+        <TextField
+          fullWidth
+          id="price"
+          name="price"
+          label="price (10,00)"
+          type="phone"
+          variant="outlined"
+          required={true}
+          style={{marginTop:"15px"}}
+          value={this_price}
+          onChange={(e) => {handlePrice(e.target.value)}}
+          inputProps={{maxLength :6}}
+        />
+        <TextField
+          fullWidth
+          id="link"
+          name="link"
+          label="link (/frontier)"
+          type="phone"
+          variant="outlined"
+          required={true}
+          style={{marginTop:"15px"}}
+          value={this_link}
+          onChange={(e) => {handleLink(e.target.value)}}
+          inputProps={{maxLength :11}}
+        />
         <ImageInput handleChange={handleChange} image={image}/>
+        <div style={{display: 'flex',flexDirection:'column', justifyContent: 'space-around', width:"70%", margin:"auto" ,marginTop:"50px", marginBottom:"50px"}}>
+        <label for="avatar">Insert CSV file with zips</label>
+        <Input type="file" id="zipcodes" name="zipcodes" accept=".csv" placeholder="zipcodes csv file" onChange={(e) => {handleFile(e.target.files[0])}} style={{marginTop:"15px"}} />
+        </div>
         <div style={{display: 'flex', justifyContent: 'space-around'}}>
         <Button color="primary" variant="contained"  type="submit" style={{marginBottom:"15px", display:display}}>
           Submit

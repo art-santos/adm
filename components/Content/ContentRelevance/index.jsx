@@ -16,9 +16,10 @@ export default function ContentRelevance(provider) {
 
   
   useEffect(async () => {
-   const result = await axios(`/api/providers/`)
-   setPlans(result.data.data)
-   updateCharacters(result.data.data)
+   const result = await axios(`https://backend-cp.herokuapp.com/api/plans/all/`, {headers: {'Allow-Control-Allow-Origin': '*'}})
+   result.data.plans.sort((a, b) => a.relevance - b.relevance)
+   setPlans(result.data.plans)
+   updateCharacters(result.data.plans)
   }, [])
 
 
@@ -50,7 +51,7 @@ export default function ContentRelevance(provider) {
   return (
     <div className="App">
       <header className="App-header">
-        <DragDropContext onDragEnd={handleOnDragEnd} onChange={console.log('a')}>
+        <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="characters">
             {(provided) => (
               <ul style={{listStyle:'number'}} className="characters" {...provided.droppableProps} ref={provided.innerRef}>

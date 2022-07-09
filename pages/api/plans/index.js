@@ -1,4 +1,4 @@
-import Cardscontainers from '../../../models/Cards2';
+import Plans from '../../../models/Plans';
 import dbConnect from '../../../utils/dbConnect';
 
 dbConnect();
@@ -10,7 +10,7 @@ export default async (req, res) => {
   switch (method) {
     case 'GET':
       try {
-        const note = await Cardscontainers.find();
+        const note = await Plans.find();
 
         if (!note) {
           return res.status(400).json({ success: false });
@@ -22,7 +22,7 @@ export default async (req, res) => {
       break;
       case 'POST':
             try {
-                const note = await Cardscontainers.create(req.body);
+                const note = await Plans.create(req.body);
 
                 res.status(201).json({ success: true, data: note })
             } catch (error) {
@@ -31,7 +31,7 @@ export default async (req, res) => {
             break;
     case 'PUT':
       try {
-        const note = await Cardscontainers.findByIdAndUpdate(id, req.body, {
+        const note = await Plans.findByIdAndUpdate(id, req.body, {
           new: true,
           runValidators: true,
         });
@@ -46,7 +46,7 @@ export default async (req, res) => {
       break;
     case 'DELETE':
       try {
-        const deletedNote = await Cardscontainers.deleteOne({
+        const deletedNote = await Plans.deleteOne({
           _id: id,
         });
 

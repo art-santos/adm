@@ -15,7 +15,7 @@ const cors = Cors({
 })
 
 function MyApp({ Component, pageProps }) {
-  const [token, setToken] = useState(false)
+  const [token, setToken] = useState(true)
   useEffect(() => {
     if(localStorage.getItem('token')){
       setToken(true)

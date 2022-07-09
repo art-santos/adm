@@ -35,8 +35,13 @@ const Relevance = () => {
   async function handleClick(){
     setLoad(true)
     for(let i=0; i < relevanceItems.length; i++){
-      await axios.put(`/api/providers/${relevanceItems[i]._id}`, {
+
+      await axios.put(`https://backend-cp.herokuapp.com/api/plans/update/relevance/${relevanceItems[i]._id}`, {
         relevance: relevanceItems[i].relevance
+      }, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
       })
     }
     setLoad(false)
@@ -48,8 +53,8 @@ const Relevance = () => {
         <Title>
           <ContentHeader title={'Order Relevance'} />
          </Title>
-         <Button onClick={handleClick} variant="contained" color="primary" size="large" style={{width: "40%", height: "50%", margin:"auto"}}>
-              SAVE
+            <Button onClick={handleClick} variant="contained" color="primary" size="large" style={{width: "40%", height: "50%", margin:"auto"}}>
+                SAVE
             </Button>
           <AlertDialog />
       </Container>
@@ -61,4 +66,3 @@ const Relevance = () => {
 };
 
 export default Relevance;
- 

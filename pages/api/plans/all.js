@@ -10,10 +10,8 @@ export default async (req, res) => {
   switch (method) {
     case 'GET':
       try {
-        const plans = await Plans.find({
-          "zip": {$in:[req.params.id, '00001']},
-      }, ['name', 'image', 'provider', 'price', 'speed', 'relevance', 'caps', 'tel', 'link'])
-      res.send(plans)
+        const plans = await Plans.find({}, ['id', 'name', 'image', 'provider', 'price', 'speed', 'relevance', 'caps', 'tel', 'link'])
+        res.send({ plans })
     }
     catch (err) {
         console.error(err)

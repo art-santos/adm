@@ -53,28 +53,20 @@ export function PlansAlt() {
     setMetadesc(res.data.items[0].metatags.description)
     setOgtitle(res.data.items[0].metatags.ogtitle)
     setOgdesc(res.data.items[0].metatags.ogdescription)
-    console.log(metatitle)
-    console.log(metadesc)
-    console.log(ogtitle)
-    console.log(ogdesc)
   },[])
 
 
   function handleMetatitle(e){
     setMetatitle(e)
-    console.log(metatitle)
   }
   function handleMetadesc(e){
     setMetadesc(e)
-    console.log(metadesc)
   }
   function handleOgtitle(e){
     setOgtitle(e)
-    console.log(ogtitle)
   }
   function handleOgdesc(e){
     setOgdesc(e)
-    console.log(ogdesc)
   }
 
   async function handleSubmit(e){

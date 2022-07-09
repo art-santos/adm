@@ -10,13 +10,7 @@ import axios from 'axios'
 export const Pages = ({data}) => {
   const [open, setOpen] = useState(false);
   const [relevance, setRelevance] = useState();
-  //const [data, setData] = useState([])
-
-  useEffect(async () => {
-    const res = await axios('/api/providers/');
-    console.log(res.data.data);
-  }, [])
-
+  data.sort((a, b) => a.relevance - b.relevance)
   function handleOpen(){
     setOpen(true)
   }
@@ -33,7 +27,7 @@ export const Pages = ({data}) => {
               </Button>
       </Container>  
         <ContentProviders data={data}/>
-        <PopupProviders />
+        <PopupProviders len={data.length}/>
     </AddProviderContext.Provider>
     </>
   );
@@ -41,7 +35,7 @@ export const Pages = ({data}) => {
  
 export default Pages;
 export async function getServerSideProps(context) {
-  const res = await fetch("http://clever-admin.vercel.app/api/providers/", {
+  const res = await fetch("https://backend-cp.herokuapp.com/api/plans/all", {
         mode: 'cors',
         headers: {
           'Access-Control-Allow-Origin':'*'
@@ -49,7 +43,7 @@ export async function getServerSideProps(context) {
       const json = await res.json()
 
     return {
-      props:{data: json.data}
+      props:{data: json.plans}
   }
 }
 

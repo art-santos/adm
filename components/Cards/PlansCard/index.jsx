@@ -32,7 +32,6 @@ export function PlansCard(props) {
   const [showDelete, setShowDelete] = useState(false);
 
   const id = props.id
-  console.log(props)
   function handleClick(e){
     setOpen(true)
   } 

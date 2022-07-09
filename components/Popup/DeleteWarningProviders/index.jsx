@@ -17,7 +17,8 @@ export default function  DeleteWarningProviders() {
   };
 
   async function handleDelete(e){
-    const res = await axios.delete(`/api/providers/${id}`)
+    console.log(e);
+    const res = await axios.post(`https://backend-cp.herokuapp.com/api/plans/delete/${id}`)
     res.status
     window.location.reload()
   }

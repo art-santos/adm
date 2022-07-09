@@ -312,19 +312,6 @@ export default function LayoutComponent({ children }) {
               <ListItemText primary={'HOME'} />
             </ListItem>
           </Link>
-          <Link href="plans">
-            <ListItem
-              button
-              key={'PLANS'}
-              value={'PLANS'}
-              onClick={handlePlans}
-            >
-              <ListItemIcon>
-                <LanguageIcon style={{ color: color.color2 }} />
-              </ListItemIcon>
-              <ListItemText primary={'PLANS'} />
-            </ListItem>
-          </Link>
           <Link href="providers">
             <ListItem
               button
@@ -350,14 +337,6 @@ export default function LayoutComponent({ children }) {
               </ListItemIcon>
               <ListItemText primary={'RELEVANCE'} />
             </ListItem>
-          </Link>
-          <Link href="tags/?id=60cf9a535d12990254bff6ab">
-              <ListItem button key={'TAGS'} value={'TAGS'} onClick={handleZips}>
-                <ListItemIcon>
-                  <LabelIcon style={{ color: color.color5 }} />
-                </ListItemIcon>
-                <ListItemText primary={'TAGS'} />
-              </ListItem>
           </Link>
         </List>
         <Divider />
