@@ -5,6 +5,7 @@ import { Container, Title, Buttons } from '../styles/MainHeader/styles';
 import Button from '@material-ui/core/Button';
 import PopupProviders from '../components/Popup/PopupProviders/index'
 import AddProviderContext from '../Context/AddProviderContext';
+import axios from 'axios'
 
 export const Pages = ({data}) => {
   const [open, setOpen] = useState(false);
@@ -34,7 +35,7 @@ export const Pages = ({data}) => {
  
 export default Pages;
 export async function getServerSideProps(context) {
-  const res = await fetch("https://backend-cp.herokuapp.com/api/plans/all", {
+  const res = await fetch("https://backend-cp.herokuapp.com/api/plans/mobile", {
         mode: 'cors',
         headers: {
           'Access-Control-Allow-Origin':'*'

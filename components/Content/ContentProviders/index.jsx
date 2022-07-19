@@ -12,7 +12,6 @@ export default function ContentProviders({data}) {
 
   const [plans, setPlans] = useState([])
   const {setRelevance} = useContext(AddProviderContext)
-  console.log(data);
 
   return (
     <>

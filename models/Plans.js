@@ -50,7 +50,12 @@ const Plans = new mongoose.Schema({
         type: String,
         required: false,
         unique:false,
-    }
+    },
+    type: {
+        type: String,
+        required: false,
+        unique:false,
+    },
 });
 
 module.exports = mongoose.model("redisUpdated", Plans);

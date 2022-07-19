@@ -26,7 +26,7 @@ import clsx from 'clsx';
 import { useState, useEffect } from 'react';
 import Logo from '../../Images/Logo';
 import Link from 'next/link';
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 
 
 const drawerWidth = 260;
@@ -97,6 +97,7 @@ const useStyles = makeStyles((theme) =>
 export default function LayoutComponent({ children }) {
   const classes = useStyles();
   const [open, setOpen] = useState(true);
+  const router = useRouter()
   const [color, setColor] = useState({
     color1: '#fd9168',
     color2: '#396ab3',
@@ -104,6 +105,7 @@ export default function LayoutComponent({ children }) {
     color4: '#396ab3', 
     color5: '#396ab3',
   });
+
 
   const [page, setPage] = useState("HOME");
   const [auth, setAuth] = useState(true);
@@ -179,27 +181,7 @@ export default function LayoutComponent({ children }) {
 
   }, [])
 
-  function handleHome() {
-    setPage('HOME');
-    setColor({
-      color1: '#fd9168',
-      color2: '#396ab3',
-      color3: '#396ab3',
-      color4: '#396ab3',
-      color5: '#396ab3',
-    });
-  }
-  
-  function handlePlans() {
-    setPage('PLANS');
-    setColor({
-      color1: '#396ab3',
-      color2: '#fd9168',
-      color3: '#396ab3',
-      color4: '#396ab3',
-      color5: '#396ab3',
-    });
-  }
+
   function handleProviders() {
     setPage('PROVIDERS');
     setColor({
@@ -304,15 +286,7 @@ export default function LayoutComponent({ children }) {
         </div>
         <Divider />
         <List>
-          <Link href="/">
-            <ListItem button key={'HOME'} value={'HOME'} onClick={handleHome}>
-              <ListItemIcon>
-                <HomeIcon style={{ color: color.color1 }} />
-              </ListItemIcon>
-              <ListItemText primary={'HOME'} />
-            </ListItem>
-          </Link>
-          <Link href="providers">
+          <Link href="/internet">
             <ListItem
               button
               key={'PLANS'}
@@ -320,9 +294,100 @@ export default function LayoutComponent({ children }) {
               onClick={handleProviders}
             >
               <ListItemIcon>
-                <HeadsetMicIcon style={{ color: color.color3 }} />
+                <HeadsetMicIcon style={{ color: router.pathname === "/internet" ? "rgb(253, 145, 104)" : "#396ab3" }}/>
               </ListItemIcon>
-              <ListItemText primary={'PROVIDERS'} />
+              <ListItemText primary={'INTERNET'} />
+            </ListItem>
+          </Link>
+          <Link href="/mobile">
+            <ListItem
+              button
+              key={'PLANS'}
+              value={'PLANS'}
+              onClick={handleProviders}
+            >
+              <ListItemIcon>
+                <HeadsetMicIcon style={{ color: router.pathname === "/mobile" ? "rgb(253, 145, 104)" : "#396ab3" }} />
+              </ListItemIcon>
+              <ListItemText primary={'MOBILE'} />
+            </ListItem>
+          </Link>
+          <Link href="/phone">
+            <ListItem
+              button
+              key={'PLANS'}
+              value={'PLANS'}
+              onClick={handleProviders}
+            >
+              <ListItemIcon>
+                <HeadsetMicIcon style={{ color: router.pathname === "/phone" ? "rgb(253, 145, 104)" : "#396ab3" }} />
+              </ListItemIcon>
+              <ListItemText primary={'PHONE'} />
+            </ListItem>
+          </Link>
+          <Link href="/streaming">
+            <ListItem 
+              button
+              key={'PLANS'}
+              value={'PLANS'}
+              onClick={handleProviders}
+            >
+              <ListItemIcon>
+                <HeadsetMicIcon style={{ color: router.pathname === "/streaming" ? "rgb(253, 145, 104)" : "#396ab3" }} />
+              </ListItemIcon>
+              <ListItemText primary={'STREAMING'} />
+            </ListItem>
+          </Link>
+          <Link href="/insurance">
+            <ListItem
+              button
+              key={'PLANS'}
+              value={'PLANS'}
+              onClick={handleProviders}
+            >
+              <ListItemIcon>
+                <HeadsetMicIcon style={{ color: router.pathname === "/insurance" ? "rgb(253, 145, 104)" : "#396ab3" }} />
+              </ListItemIcon>
+              <ListItemText primary={'INSURANCE'} />
+            </ListItem>
+          </Link>
+          <Link href="/tv">
+            <ListItem
+              button
+              key={'PLANS'}
+              value={'PLANS'}
+              onClick={handleProviders}
+            >
+              <ListItemIcon>
+                <HeadsetMicIcon style={{ color: router.pathname === "/tv" ? "rgb(253, 145, 104)" : "#396ab3" }} />
+              </ListItemIcon>
+              <ListItemText primary={'TV'} />
+            </ListItem>
+          </Link>
+          <Link href="/credit_cards">
+            <ListItem
+              button
+              key={'PLANS'}
+              value={'PLANS'}
+              onClick={handleProviders}
+            >
+              <ListItemIcon>
+                <HeadsetMicIcon style={{ color: router.pathname === "/home_security" ? "rgb(253, 145, 104)" : "#396ab3" }} />
+              </ListItemIcon>
+              <ListItemText primary={'HOME SECURITY'} />
+            </ListItem>
+          </Link>
+          <Link href="/home_security">
+            <ListItem
+              button
+              key={'PLANS'}
+              value={'PLANS'}
+              onClick={handleProviders}
+            >
+              <ListItemIcon>
+                <HeadsetMicIcon style={{ color: router.pathname === "/home_security" ? "rgb(253, 145, 104)" : "#396ab3" }} />
+              </ListItemIcon>
+              <ListItemText primary={'CREDIT CARDS'} />
             </ListItem>
           </Link>
           <Link href="relevance">
@@ -333,7 +398,7 @@ export default function LayoutComponent({ children }) {
               onClick={handleRelevance}
             >
               <ListItemIcon>
-                <SwapVertIcon style={{ color: color.color4 }} />
+                <SwapVertIcon style={{ color: router.pathname === "/relevance" ? "rgb(253, 145, 104)" : "#396ab3" }} />
               </ListItemIcon>
               <ListItemText primary={'RELEVANCE'} />
             </ListItem>

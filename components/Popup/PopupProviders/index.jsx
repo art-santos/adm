@@ -10,8 +10,12 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios'
 import { Input } from '@material-ui/core';
 import Papa from "papaparse";
+import { useRouter } from 'next/router'
 
 export default function PopupProviders({len}) {
+  const router = useRouter()
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(true)
   const {open, setOpen, relevance} = useContext(AddProviderContext)
   const [image, setImage] = useState("");
   const [file, setFile] = useState(null);
@@ -26,7 +30,8 @@ export default function PopupProviders({len}) {
   const [this_relevance, setRelevance] = useState("")
   const [tel, setTel] = useState(telephone)
   const [load, setLoad] = useState(false);
-  
+
+  const type = (router.pathname).slice(1, (router.pathname).length)  
   function handleClose(){
    setOpen(false)
   }
@@ -73,14 +78,6 @@ export default function PopupProviders({len}) {
    }
   }
 
-  const handleRelevance = (e) => {
-    setRelevance(e)
-  }
-
-  const handleTel = (e) => {
-    setTel(e)
-  }
-
   const handleChange = async (e) => {
     setLoad(true)
     const res = await sendToCloud(e)
@@ -103,7 +100,8 @@ export default function PopupProviders({len}) {
       "link": this_link,
       "speed": this_speed,
       "relevance": len+1,
-      "zip": zips
+      "zip": zips,
+      "type": type
       })
     }catch(e){
       setFullLoad(false)
