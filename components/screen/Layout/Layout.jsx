@@ -364,7 +364,7 @@ export default function LayoutComponent({ children }) {
               <ListItemText primary={'TV'} />
             </ListItem>
           </Link>
-          <Link href="/credit_cards">
+          <Link href="/home_security">
             <ListItem
               button
               key={'PLANS'}
@@ -377,7 +377,7 @@ export default function LayoutComponent({ children }) {
               <ListItemText primary={'HOME SECURITY'} />
             </ListItem>
           </Link>
-          <Link href="/home_security">
+          <Link href="/credit_cards">
             <ListItem
               button
               key={'PLANS'}
@@ -385,7 +385,7 @@ export default function LayoutComponent({ children }) {
               onClick={handleProviders}
             >
               <ListItemIcon>
-                <HeadsetMicIcon style={{ color: router.pathname === "/home_security" ? "rgb(253, 145, 104)" : "#396ab3" }} />
+                <HeadsetMicIcon style={{ color: router.pathname === "/credit_cards" ? "rgb(253, 145, 104)" : "#396ab3" }} />
               </ListItemIcon>
               <ListItemText primary={'CREDIT CARDS'} />
             </ListItem>
