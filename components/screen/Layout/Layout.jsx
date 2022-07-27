@@ -284,8 +284,8 @@ export default function LayoutComponent({ children }) {
             <Logo />
           </Link>
         </div>
-        <Divider />
-        <List>
+        <Divider style={{marginTop:"50px"}} />
+        <List style={{overflowY:"scroll", marginTop:"5px"}}>
           <Link href="/internet">
             <ListItem
               button
@@ -297,6 +297,19 @@ export default function LayoutComponent({ children }) {
                 <HeadsetMicIcon style={{ color: router.pathname === "/internet" ? "rgb(253, 145, 104)" : "#396ab3" }}/>
               </ListItemIcon>
               <ListItemText primary={'INTERNET'} />
+            </ListItem>
+          </Link>
+          <Link href="/internet/relevance">
+            <ListItem
+              button
+              key={'RELEVANCE'}
+              value={'RELEVANCE'}
+              onClick={handleRelevance}
+            >
+              <ListItemIcon>
+                <SwapVertIcon style={{ color: router.pathname === "/internet/relevance" ? "rgb(253, 145, 104)" : "#396ab3" }} />
+              </ListItemIcon>
+              <ListItemText primary={'INTERNET RELEVANCE'} />
             </ListItem>
           </Link>
           <Link href="/mobile">
@@ -312,6 +325,19 @@ export default function LayoutComponent({ children }) {
               <ListItemText primary={'MOBILE'} />
             </ListItem>
           </Link>
+          <Link href="/mobile/relevance">
+            <ListItem
+              button
+              key={'RELEVANCE'}
+              value={'RELEVANCE'}
+              onClick={handleRelevance}
+            >
+              <ListItemIcon>
+                <SwapVertIcon style={{ color: router.pathname === "/mobile/relevance" ? "rgb(253, 145, 104)" : "#396ab3" }} />
+              </ListItemIcon>
+              <ListItemText primary={'MOBILE RELEVANCE'} />
+            </ListItem>
+          </Link>
           <Link href="/phone">
             <ListItem
               button
@@ -323,6 +349,19 @@ export default function LayoutComponent({ children }) {
                 <HeadsetMicIcon style={{ color: router.pathname === "/phone" ? "rgb(253, 145, 104)" : "#396ab3" }} />
               </ListItemIcon>
               <ListItemText primary={'PHONE'} />
+            </ListItem>
+          </Link>
+          <Link href="/phone/relevance">
+            <ListItem
+              button
+              key={'RELEVANCE'}
+              value={'RELEVANCE'}
+              onClick={handleRelevance}
+            >
+              <ListItemIcon>
+                <SwapVertIcon style={{ color: router.pathname === "/phone/relevance" ? "rgb(253, 145, 104)" : "#396ab3" }} />
+              </ListItemIcon>
+              <ListItemText primary={'PHONE RELEVANCE'} />
             </ListItem>
           </Link>
           <Link href="/streaming">
@@ -338,6 +377,20 @@ export default function LayoutComponent({ children }) {
               <ListItemText primary={'STREAMING'} />
             </ListItem>
           </Link>
+          <Link href="/streaming/relevance">
+            <ListItem
+              button
+              key={'RELEVANCE'}
+              value={'RELEVANCE'}
+              onClick={handleRelevance}
+            >
+              <ListItemIcon>
+                <SwapVertIcon style={{ color: router.pathname === "/streaming/relevance" ? "rgb(253, 145, 104)" : "#396ab3" }} />
+              </ListItemIcon>
+              <ListItemText primary={'STREAMING RELEVANCE'} />
+            </ListItem>
+          </Link>
+          
           <Link href="/insurance">
             <ListItem
               button
@@ -349,6 +402,19 @@ export default function LayoutComponent({ children }) {
                 <HeadsetMicIcon style={{ color: router.pathname === "/insurance" ? "rgb(253, 145, 104)" : "#396ab3" }} />
               </ListItemIcon>
               <ListItemText primary={'INSURANCE'} />
+            </ListItem>
+          </Link>
+          <Link href="/insurance/relevance">
+            <ListItem
+              button
+              key={'RELEVANCE'}
+              value={'RELEVANCE'}
+              onClick={handleRelevance}
+            >
+              <ListItemIcon>
+                <SwapVertIcon style={{ color: router.pathname === "/insurance/relevance" ? "rgb(253, 145, 104)" : "#396ab3" }} />
+              </ListItemIcon>
+              <ListItemText primary={'INSURANCE RELEVANCE'} />
             </ListItem>
           </Link>
           <Link href="/tv">
@@ -364,6 +430,20 @@ export default function LayoutComponent({ children }) {
               <ListItemText primary={'TV'} />
             </ListItem>
           </Link>
+          
+          <Link href="/tv/relevance">
+            <ListItem
+              button
+              key={'RELEVANCE'}
+              value={'RELEVANCE'}
+              onClick={handleRelevance}
+            >
+              <ListItemIcon>
+                <SwapVertIcon style={{ color: router.pathname === "/tv/relevance" ? "rgb(253, 145, 104)" : "#396ab3" }} />
+              </ListItemIcon>
+              <ListItemText primary={'TV RELEVANCE'} />
+            </ListItem>
+          </Link>
           <Link href="/home_security">
             <ListItem
               button
@@ -375,6 +455,19 @@ export default function LayoutComponent({ children }) {
                 <HeadsetMicIcon style={{ color: router.pathname === "/home_security" ? "rgb(253, 145, 104)" : "#396ab3" }} />
               </ListItemIcon>
               <ListItemText primary={'HOME SECURITY'} />
+            </ListItem>
+          </Link>
+          <Link href="/home_security/relevance">
+            <ListItem
+              button
+              key={'RELEVANCE'}
+              value={'RELEVANCE'}
+              onClick={handleRelevance}
+            >
+              <ListItemIcon>
+                <SwapVertIcon style={{ color: router.pathname === "/home_security/relevance" ? "rgb(253, 145, 104)" : "#396ab3" }} />
+              </ListItemIcon>
+              <ListItemText primary={'HOME SECURITY RELEVANCE'} />
             </ListItem>
           </Link>
           <Link href="/credit_cards">
@@ -390,7 +483,7 @@ export default function LayoutComponent({ children }) {
               <ListItemText primary={'CREDIT CARDS'} />
             </ListItem>
           </Link>
-          <Link href="relevance">
+          <Link href="/credit_cards/relevance">
             <ListItem
               button
               key={'RELEVANCE'}
@@ -398,9 +491,9 @@ export default function LayoutComponent({ children }) {
               onClick={handleRelevance}
             >
               <ListItemIcon>
-                <SwapVertIcon style={{ color: router.pathname === "/relevance" ? "rgb(253, 145, 104)" : "#396ab3" }} />
+                <SwapVertIcon style={{ color: router.pathname === "/credit_cards/relevance" ? "rgb(253, 145, 104)" : "#396ab3" }} />
               </ListItemIcon>
-              <ListItemText primary={'RELEVANCE'} />
+              <ListItemText primary={'CREDIT CARD RELEVANCE'} />
             </ListItem>
           </Link>
         </List>

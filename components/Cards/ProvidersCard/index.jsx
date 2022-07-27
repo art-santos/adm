@@ -35,6 +35,10 @@ export function ProvidersCard(props) {
   const speed = props.speed;
   const relevance = props.relevance;
   const telephone = props.telephone;
+  const call_now = props.call_now;
+  const website = props.website;
+  const order_online = props.order_online;
+  const is_business = props.is_business;
   const trimImage = getImage(props.image)
 
 
@@ -75,7 +79,7 @@ export function ProvidersCard(props) {
           </Button>
         </CardActions>
       </Card>
-      <EditProviderContext.Provider value={{trimImage, showDelete, setShowDelete,id, open, setOpen, title, phone, telephone, caps, speed, link, price, relevance}}>
+      <EditProviderContext.Provider value={{trimImage, showDelete, setShowDelete,id, open, setOpen, title, phone, telephone, caps, speed, link, price, relevance, call_now, is_business, order_online, website}}>
       <DeleteWarningProviders />
       <PopupEditProviders />
       </EditProviderContext.Provider>

@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react';
-import ContentHeader from '../components/Content/ContentHeader/index';
-import ContentProviders from '../components/Content/ContentProviders/index';
-import { Container, Title, Buttons } from '../styles/MainHeader/styles';
+import ContentHeader from '../../components/Content/ContentHeader/index';
+import ContentProviders from '../../components/Content/ContentProviders/index';
+import { Container, Title, Buttons } from '../../styles/MainHeader/styles';
 import Button from '@material-ui/core/Button';
-import PopupProviders from '../components/Popup/PopupProviders/index'
-import AddProviderContext from '../Context/AddProviderContext';
+import PopupProviders from '../../components/Popup/PopupProviders/index'
+import AddProviderContext from '../../Context/AddProviderContext';
 import axios from 'axios'
 
 export const Pages = ({data}) => {

@@ -8,12 +8,16 @@ import sendToCloud from '../../Functions/sendToCloud'
 import AddProviderContext from '../../../Context/AddProviderContext'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios'
-import { Input } from '@material-ui/core';
+import { Checkbox, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Input, Radio, RadioGroup } from '@material-ui/core';
 import Papa from "papaparse";
 import { useRouter } from 'next/router'
 
 export default function PopupProviders({len}) {
   const router = useRouter()
+  const [callNow, setCallNow] = React.useState(false);
+  const [website, setWebsite] = React.useState('');
+  const [orderOnline, setOrderOnline] = React.useState(false);
+  const [isBusiness, setIsBusiness] = React.useState(false);
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
   const {open, setOpen, relevance} = useContext(AddProviderContext)
@@ -30,6 +34,7 @@ export default function PopupProviders({len}) {
   const [this_relevance, setRelevance] = useState("")
   const [tel, setTel] = useState(telephone)
   const [load, setLoad] = useState(false);
+  const [is_business, setis_business] = useState(false)
 
   const type = (router.pathname).slice(1, (router.pathname).length)  
   function handleClose(){
@@ -67,6 +72,10 @@ export default function PopupProviders({len}) {
     setPrice(e)
   }
 
+  const handleWebsite = (e) => {
+    setWebsite(e)
+  }
+
   const handleLink = (e) => {
     setLink(e)
   }
@@ -101,7 +110,11 @@ export default function PopupProviders({len}) {
       "speed": this_speed,
       "relevance": len+1,
       "zip": zips,
-      "type": type
+      "type": type,
+      "is_business": isBusiness,
+      "call_now": callNow,
+      "order_online": orderOnline,
+      "website": website,
       })
     }catch(e){
       setFullLoad(false)
@@ -126,19 +139,7 @@ export default function PopupProviders({len}) {
           onChange={(e) => {handleName(e.target.value)}}
         />
         
-        <TextField
-          fullWidth
-          id="telephone"
-          name="telephone"
-          label="telephone (18335310303)"
-          type="phone"
-          variant="outlined"
-          required={true}
-          style={{marginTop:"15px"}}
-          value={telephone}
-          onChange={(e) => {handleTelephone(e.target.value)}}
-          inputProps={{maxLength :11}}
-        />
+        
         <TextField
           fullWidth
           id="speed"
@@ -182,7 +183,20 @@ export default function PopupProviders({len}) {
           fullWidth
           id="link"
           name="link"
-          label="link (/frontier)"
+          label="Website link (/frontier)"
+          type="phone"
+          variant="outlined"
+          required={true}
+          style={{marginTop:"15px"}}
+          value={website}
+          onChange={(e) => {handleWebsite(e.target.value)}}
+          inputProps={{maxLength :11}}
+        />
+        <TextField
+          fullWidth
+          id="link"
+          name="link"
+          label="Order Online link"
           type="phone"
           variant="outlined"
           required={true}
@@ -191,6 +205,37 @@ export default function PopupProviders({len}) {
           onChange={(e) => {handleLink(e.target.value)}}
           inputProps={{maxLength :11}}
         />
+        <TextField
+          fullWidth
+          id="telephone"
+          name="telephone"
+          label="telephone (18335310303)"
+          type="phone"
+          variant="outlined"
+          required={true}
+          style={{marginTop:"15px"}}
+          value={telephone}
+          onChange={(e) => {handleTelephone(e.target.value)}}
+          inputProps={{maxLength :11}}
+        />
+        <Divider style={{marginTop:"20px", marginBottom:'20px'}}/>
+        <FormLabel id="demo-radio-buttons-group-label">Buttons available</FormLabel>
+        <FormGroup>
+          <FormControlLabel control={<Checkbox onChange={() => setCallNow(!callNow)}/>} label="Call Now" />
+          <FormControlLabel control={<Checkbox onChange={() => setOrderOnline(!orderOnline)}/>} label="Order Online" />
+        </FormGroup>
+        <Divider style={{marginTop:"20px", marginBottom:'20px'}}/>
+        <FormControl>
+        <FormLabel id="demo-radio-buttons-group-label">Client</FormLabel>
+        <RadioGroup
+          aria-labelledby="demo-radio-buttons-group-label"
+          defaultValue="false"
+          name="radio-buttons-group"
+        >
+          <FormControlLabel value="true" control={<Radio onChange={() => setis_business(true)} />} label="Business" />
+          <FormControlLabel value="false" control={<Radio onChange={() => setis_business(true)}/>} label="Residential" />
+        </RadioGroup>
+      </FormControl>
         <ImageInput handleChange={handleChange} image={image}/>
         <div style={{display: 'flex',flexDirection:'column', justifyContent: 'space-around', width:"70%", margin:"auto" ,marginTop:"50px", marginBottom:"50px"}}>
         <label for="avatar">Insert CSV file with zips</label>

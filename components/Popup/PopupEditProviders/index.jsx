@@ -9,7 +9,7 @@ import EditProviderContext from '../../../Context/EditProviderContext';
 import ImageInput from '../../../components/Form/ImageInput/index';
 import sendToCloud from '../../Functions/sendToCloud'
 import axios from 'axios'
-import { Input } from '@material-ui/core';
+import { Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Input, Radio, RadioGroup, Text, Typography } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,8 +23,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PopupEditProviders() {
+
   const classes = useStyles();
-  const {trimImage, open, setOpen, title, phone, caps, price, link, speed, relevance, telephone, id} = useContext(EditProviderContext)
+  const {trimImage, open, setOpen, title, phone, caps, price, link, speed, relevance, telephone, id, call_now, order_online, website, is_business} = useContext(EditProviderContext)
+  const [orderOnline, setOrderOnline] = React.useState(order_online);
+  const [callNow, setCallNow] = React.useState(call_now);
+  const [websiteLink, setWebsiteLink] = React.useState(website)
+  const [isBusiness, setIsBusiness] = React.useState(is_business)
   const [image, setImage] = useState(trimImage);
   const [file, setFile] = useState(null);
   const [name, setName] = useState(title)
@@ -36,13 +41,12 @@ export default function PopupEditProviders() {
   const [this_relevance, setRelevance] = useState(relevance)
   const [tel, setTel] = useState(telephone)
   const [load, setLoad] = useState(false);
-
+  
   function handleClose(){
    setOpen(false)
   }
   const handleName = (e) => {
     setName(e)
-    console.log(e);
   };
   const handleCaps =  (e) => {
     setCaps(e)
@@ -54,6 +58,10 @@ export default function PopupEditProviders() {
 
   const handleLink = (e) => {
     setLink(e)
+  }
+
+  const handleWebsiteLink = (e) => {
+    setWebsiteLink(e)
   }
 
   const handleSpeed = (e) => {
@@ -91,13 +99,16 @@ export default function PopupEditProviders() {
       link: this_link,
       speed: this_speed,
       relevance: this_relevance,
-      telephone: tel
+      telephone: tel, 
+      call_now: callNow,
+      order_online: orderOnline,
+      is_business: isBusiness,
+      website: websiteLink
     })
     setLoad(false)
     handleClose()
     window.location.reload()
   }
-
   return (  
       <>
         <Dialog open={open} aria-labelledby="form-dialog-title">
@@ -114,21 +125,6 @@ export default function PopupEditProviders() {
           required={false}
           value={name}
           onChange={(e) => {handleName((e.target.value))}}
-        />
-        
-
-        <TextField
-          fullWidth
-          id="Phone"
-          name="Phone"
-          label="Phone"
-          type="Phone"
-          variant="outlined"
-          required={false}
-          style={{marginTop:"15px"}}
-          value={tel}
-          onChange={(e) => {handleTel(e.target.value)}}
-          inputProps={{maxLength:11}}
         />
 
           <TextField
@@ -163,7 +159,7 @@ export default function PopupEditProviders() {
           fullWidth
           id="Link"
           name="Link"
-          label="Link"
+          label="Website Link"
           type="Link"
           variant="outlined"
           required={false}
@@ -171,6 +167,32 @@ export default function PopupEditProviders() {
           value={this_link}
           onChange={(e) => {handleLink(e.target.value)}}
           inputProps={{maxLength:100}}
+        />
+        <TextField
+          fullWidth
+          id="Link"
+          name="Link"
+          label="Order Online Link"
+          type="Link"
+          variant="outlined"
+          required={false}
+          style={{marginTop:"15px"}}
+          value={websiteLink}
+          onChange={(e) => {handleWebsiteLink(e.target.value)}}
+          inputProps={{maxLength:100}}
+        />
+        <TextField
+          fullWidth
+          id="Phone"
+          name="Phone"
+          label="Phone"
+          type="Phone"
+          variant="outlined"
+          required={false}
+          style={{marginTop:"15px"}}
+          value={tel}
+          onChange={(e) => {handleTel(e.target.value)}}
+          inputProps={{maxLength:11}}
         />
 
         <TextField
@@ -186,6 +208,22 @@ export default function PopupEditProviders() {
           onChange={(e) => {handlePrice(e.target.value)}}
           inputProps={{maxLength:6}}
         />
+        <FormLabel id="demo-radio-buttons-group-label">Buttons available</FormLabel>
+        <FormGroup>
+          <FormControlLabel control={<Checkbox checked={callNow} onChange={() => {setCallNow(!callNow)}} />}  label="Call Now" />
+          <FormControlLabel control={<Checkbox checked={orderOnline} onChange={() => {setOrderOnline(!orderOnline)}} />} label="Order Online" />
+        </FormGroup>
+        <FormControl>
+        <FormLabel id="demo-radio-buttons-group-label">Client</FormLabel>
+        <RadioGroup
+          aria-labelledby="demo-radio-buttons-group-label"
+          defaultValue="false"
+          name="radio-buttons-group"
+        >
+          <FormControlLabel value="true" control={<Radio checked={isBusiness} onChange={() => {setIsBusiness(true)}}/>} label="Business" />
+          <FormControlLabel value="false" control={<Radio checked={!isBusiness} onChange={() => {setIsBusiness(false)}} />} label="Residential" />
+        </RadioGroup>
+      </FormControl>
 
         <TextField
           fullWidth

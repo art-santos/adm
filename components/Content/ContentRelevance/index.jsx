@@ -8,7 +8,7 @@ import RelevanceContext from '../../../Context/RelevanceContext'
 
 
 
-export default function ContentRelevance(provider) {
+export default function ContentRelevance({provider, type, func}) {
   const{setRelevanceItems} = useContext(RelevanceContext)
   const [plans, setPlans] = useState([])
   const [characters, updateCharacters] = useState(plans);
@@ -16,10 +16,13 @@ export default function ContentRelevance(provider) {
 
   
   useEffect(async () => {
-   const result = await axios(`https://backend-cp.herokuapp.com/api/plans/all/`, {headers: {'Allow-Control-Allow-Origin': '*'}})
-   result.data.plans.sort((a, b) => a.relevance - b.relevance)
-   setPlans(result.data.plans)
-   updateCharacters(result.data.plans)
+   const result = await axios(`https://backend-cp.herokuapp.com/api/plans/${type}/`, {headers: {'Allow-Control-Allow-Origin': '*'}})
+   const content = result.data.plans ? result.data.plans : result.data
+    if(content !== []){
+        content.sort((a, b) => a.relevance - b.relevance)
+    }
+    setPlans(content)
+    updateCharacters(content)
   }, [])
 
 
