@@ -78,7 +78,7 @@ export function ProvidersCard(props) {
             Delete
           </Button>
         </CardActions>
-      </Card>
+      </Card> 
       <EditProviderContext.Provider value={{trimImage, showDelete, setShowDelete,id, open, setOpen, title, phone, telephone, caps, speed, link, price, relevance, call_now, is_business, order_online, website}}>
       <DeleteWarningProviders />
       <PopupEditProviders />
